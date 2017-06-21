@@ -147,7 +147,7 @@ def loss(logits, labels):
     """
     labels = tf.to_int64(labels)
     cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(
-      logits, labels, name='xentropy')
+      logits=logits, labels=labels, name='xentropy')
     loss = tf.reduce_mean(cross_entropy, name='xentropy_mean')
     return loss
 
@@ -170,7 +170,7 @@ def training(loss, learning_rate):
     train_op: The Op for training.
     """
     # Add a scalar summary for the snapshot loss.
-    tf.scalar_summary(loss.op.name, loss)
+    tf.summary.scalar(loss.op.name, loss)
     # Create the gradient descent optimizer with the given learning rate.
     optimizer = tf.train.AdagradOptimizer(learning_rate)
     # Create a variable to track the global step.
