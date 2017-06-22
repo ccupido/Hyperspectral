@@ -1,1 +1,1 @@
-patch_size = 7
+patch_size = 17
